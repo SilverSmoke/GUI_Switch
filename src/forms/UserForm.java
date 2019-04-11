@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class UserForm {
     private JPanel rootPanel;
@@ -26,6 +28,32 @@ public class UserForm {
                 framesController.jumpToFIOFrame();
             }
         });
+
+        name.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkJumpCommand(e);
+            }
+        });
+        surName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkJumpCommand(e);
+            }
+        });
+        patronymic.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkJumpCommand(e);
+            }
+        });
+
+    }
+
+    private void checkJumpCommand(KeyEvent e){
+        if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER) {
+            framesController.jumpToFIOFrame();
+        }
     }
 
     public String getFIO() {

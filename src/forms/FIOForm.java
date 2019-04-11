@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FIOForm {
     private final FramesController framesController;
@@ -20,6 +22,12 @@ public class FIOForm {
         switchFIO.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                framesController.jumpToMainFrame();
+            }
+        });
+        textFIO.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
                 framesController.jumpToMainFrame();
             }
         });
