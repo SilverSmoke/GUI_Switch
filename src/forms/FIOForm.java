@@ -28,7 +28,9 @@ public class FIOForm {
         textFIO.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                framesController.jumpToMainFrame();
+                if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER) {
+                    framesController.jumpToMainFrame();
+                }
             }
         });
     }

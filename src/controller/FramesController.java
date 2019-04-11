@@ -30,7 +30,7 @@ public class FramesController {
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
 
-        /**FIOFrame conctruction*/
+        /**fioFrame construction*/
         formFIO = new FIOForm(this);
         fioFrame.setContentPane(formFIO.getRootPanel());
 
