@@ -14,6 +14,7 @@ public class FIOForm {
     private JTextField textFIO;
     private JButton switchFIO;
     private JPanel rootPanel;
+    private JProgressBar progressBar;
 
     public FIOForm(FramesController framesController) {
 
@@ -28,6 +29,7 @@ public class FIOForm {
         textFIO.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
+                progressFIO();
                 if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER) {
                     framesController.jumpToMainFrame();
                 }
@@ -35,8 +37,21 @@ public class FIOForm {
         });
     }
 
+    private void progressFIO() {
+        progressBar.setMinimum(0);
+        progressBar.setMaximum(3);
+
+        progressBar.setValue(0);
+
+        if(!textFIO.getText().equals("")) {
+            String[] fio = textFIO.getText().split(" ");
+            progressBar.setValue(fio.length);
+        }
+    }
+
     public void setFIO(String fio){
         textFIO.setText(fio);
+        progressFIO();
     }
 
     public String getFIO() {
@@ -45,5 +60,9 @@ public class FIOForm {
 
     public Container getRootPanel() {
         return rootPanel;
+    }
+
+    public JProgressBar getProgressBar() {
+        return progressBar;
     }
 }

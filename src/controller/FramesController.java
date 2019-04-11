@@ -58,6 +58,10 @@ public class FramesController {
     }
 
     public void jumpToMainFrame() {
+        if(formFIO.getProgressBar().getValue() < 3){
+            JOptionPane.showMessageDialog(fioFrame, "Введите полное имя, включая отчество!");
+            return;
+        }
         String fio = formFIO.getFIO();
         mainForm.setFIO(fio);
         fioFrame.setVisible(false);

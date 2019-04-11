@@ -57,19 +57,15 @@ public class UserForm {
     }
 
     public String getFIO() {
-        if(name.getText().length()>0 && patronymic.getText().length()>0 && surName.getText().length()>0) {
-            return surName.getText() + " " + patronymic.getText() + " " + name.getText();
-        }else{
-            return "";
-        }
+        return (surName.getText() + " " + patronymic.getText() + " " + name.getText()).trim();
     }
 
     public void setFIO(String fio) {
         try {
-            String[] fioArray = fio.split(" ");
-            name.setText(fioArray[2]);
-            patronymic.setText(fioArray[1]);
+            String[] fioArray = fio.trim().split(" ");
             surName.setText(fioArray[0]);
+            name.setText(fioArray[1]);
+            patronymic.setText(fioArray[2]);
         }catch (ArrayIndexOutOfBoundsException e){
             name.setText("");
             patronymic.setText("");
