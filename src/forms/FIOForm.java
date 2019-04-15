@@ -44,7 +44,7 @@ public class FIOForm {
         progressBar.setValue(0);
 
         if(!textFIO.getText().equals("")) {
-            String[] fio = textFIO.getText().split(" ");
+            String[] fio = textFIO.getText().trim().split(" ");
             progressBar.setValue(fio.length);
         }
     }

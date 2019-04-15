@@ -25,7 +25,9 @@ public class UserForm {
         switchUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                framesController.jumpToFIOFrame();
+                if(isFormComplete()){
+                    framesController.jumpToFIOFrame();
+                }
             }
         });
 
@@ -52,12 +54,42 @@ public class UserForm {
 
     private void checkJumpCommand(KeyEvent e){
         if(e.isControlDown()&&e.getKeyCode()==KeyEvent.VK_ENTER) {
-            framesController.jumpToFIOFrame();
+            if(isFormComplete()) {
+                framesController.jumpToFIOFrame();
+            }
         }
     }
 
+    private boolean isFormComplete(){
+        boolean complete = true;
+        if(name.getText().equals("")){
+            JOptionPane.showMessageDialog(
+                    rootPanel,
+                    "Введите имя!");
+            complete = false;
+        }else if(surName.getText().equals("")){
+            JOptionPane.showMessageDialog(
+                    rootPanel,
+                    "Введите фамилию!");
+            complete = false;
+        }else if(patronymic.getText().equals("")){
+            int result = JOptionPane.showConfirmDialog(
+                    rootPanel,
+                    "Уверены ли Вы в том, что не хотите установить отчество?",
+                    "Уверены?",
+                    JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.NO_OPTION) {
+                complete = false;
+            }
+        }
+        return complete;
+    }
+
     public String getFIO() {
-        return (surName.getText() + " " + patronymic.getText() + " " + name.getText()).trim();
+        if(patronymic.getText().equals("")) {
+            return (surName.getText() + " " + name.getText()).trim();
+        }
+        return (surName.getText() + " " + name.getText() + " " + patronymic.getText()).trim();
     }
 
     public void setFIO(String fio) {
